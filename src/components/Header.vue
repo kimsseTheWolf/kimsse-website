@@ -1,31 +1,36 @@
+<script setup>
+import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
+</script>
 <template>
-    <div class="header-container">
-        <div class="header-panels">
-            <slot name="Left"></slot>
-        </div>
-        <div class="header-panels">
-            <slot name="Right"></slot>
-        </div>
-    </div>
+    <HeaderFooterContainer>
+        <template #Left>
+            <div style="color: var(--color-gray-500);">[KIMSSETHEWOLF/]</div>
+        </template>
+        <template #Right>
+            <div class="desktop-nav">WORKS</div>
+            <div class="desktop-nav">RESEARCH</div>
+            <div class="desktop-nav">ABOUT</div>
+            <div class="desktop-nav">CONTACT</div>
+            <div class="mobile-nav" style="font-size: var(--font-size-24);"></div>
+        </template>
+    </HeaderFooterContainer>
 </template>
 <style scoped>
-.header-container {
-    display: flex;
-    flex-direction: row;
-    padding-left: var(--space-100);
-    padding-right: var(--space-100);
-    padding-top: var(--space-15);
-    padding-bottom: var(--space-15);
-    margin: var(--space-0);
-    justify-content: space-between;
-
-    font-family: var(--font-family-mono);
-    font-size: var(--font-size-12);
+.desktop-nav {
+    display: block;
 }
 
-.header-panels {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-20);
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
 }
 </style>
