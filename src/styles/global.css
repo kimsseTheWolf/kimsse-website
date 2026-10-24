@@ -1,0 +1,277 @@
+/*
+ * Personal Website — Design Tokens v1
+ * Source: Figma CpMfIfk4M8tG8sQ2kvFH6U
+ * Naming: primitives → semantic tokens → component tokens.
+ * User decisions: secondary #707070; JetBrainsMono NF; line-height normal;
+ * borders 2px / small controls 1px; page gutter 100px.
+ * This file declares tokens only. It does not apply a global reset.
+ * Font files must be supplied separately; font-family names match Figma.
+ * No breakpoint, dark theme, or interaction-state colors have been inferred.
+ */
+
+:root {
+  /* Primitive colors */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-paper: #f7f6f3;
+  --color-gray-900: #2a2a2a;
+  --color-gray-700: #626262;
+  --color-gray-600: #707070;
+  --color-gray-500: #7b7b7b;
+  --color-gray-200: #d9d9d9;
+  --color-blue-soft: #dff1ff;
+  --color-blue: #1285ff;
+  --color-green-soft: #d3f2d1;
+  --color-green: #00c839;
+  --color-amber-soft: #fff6df;
+  --color-amber: #ffa412;
+  --color-red-soft: #ffdfdf;
+  --color-red: #ff1212;
+  --color-placeholder-pink: #ffabab;
+
+  /* Primitive typography */
+  --font-family-mono: "JetBrainsMono NF", monospace;
+  --font-family-sans: "Inter", sans-serif;
+  --font-family-display: "IBM Plex Sans", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-24: 24px;
+  --font-size-32: 32px;
+  --font-size-64: 64px;
+  --font-size-96: 96px;
+  --font-size-128: 128px;
+  --line-height-auto: normal;
+  --letter-spacing-default: 0;
+
+  /* Primitive spacing: existing 5px scale + observed callout exception */
+  --space-0: 0px;
+  --space-3: 3px;
+  --space-5: 5px;
+  --space-10: 10px;
+  --space-15: 15px;
+  --space-20: 20px;
+  --space-25: 25px;
+  --space-30: 30px;
+  --space-100: 100px;
+
+  /* Primitive geometry */
+  --border-width-thin: 1px;
+  --border-width-regular: 2px;
+  --border-style-default: solid;
+  --radius-none: 0px;
+
+  /* Semantic colors: all former auxiliary grays converge on #707070. */
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-gray-600);
+  --text-brand: var(--text-secondary);
+  --text-caption: var(--text-secondary);
+  --text-meta: var(--text-secondary);
+  --text-placeholder: var(--text-secondary);
+  --text-link: var(--text-primary);
+  --icon-default: var(--text-primary);
+  --icon-secondary: var(--text-secondary);
+  --bg-page: var(--color-paper);
+  --bg-control: transparent;
+  --bg-code: rgb(255 255 255 / 50%);
+  --border-control: var(--color-gray-700);
+  --border-table: var(--color-gray-500);
+  --divider-color: var(--color-gray-900);
+  --status-info-bg: var(--color-blue-soft);
+  --status-info-label: var(--color-blue);
+  --status-tip-bg: var(--color-green-soft);
+  --status-tip-label: var(--color-green);
+  --status-warning-bg: var(--color-amber-soft);
+  --status-warning-label: var(--color-amber);
+  --status-danger-bg: var(--color-red-soft);
+  --status-danger-label: var(--color-red);
+  --status-text: var(--text-primary);
+
+  /* Semantic typography: sizes/weights retained; all line heights normalized. */
+  --type-name-family: var(--font-family-display);
+  --type-name-weight: var(--font-weight-bold);
+  --type-name-size: var(--font-size-128);
+  --type-name-size-compact: var(--font-size-96);
+  --type-page-title-family: var(--font-family-mono);
+  --type-page-title-weight: var(--font-weight-extra-bold);
+  --type-page-title-size: var(--font-size-64);
+  --type-card-title-family: var(--font-family-mono);
+  --type-card-title-weight: var(--font-weight-extra-bold);
+  --type-card-title-size: var(--font-size-24);
+  --type-article-heading-family: var(--font-family-sans);
+  --type-article-heading-weight: var(--font-weight-black);
+  --type-article-heading-size: var(--font-size-32);
+  --type-article-subheading-size: var(--font-size-24);
+  --type-body-family: var(--font-family-sans);
+  --type-body-weight: var(--font-weight-regular);
+  --type-body-strong-weight: var(--font-weight-bold);
+  --type-body-size: var(--font-size-16);
+  --type-ui-family: var(--font-family-mono);
+  --type-ui-weight: var(--font-weight-medium);
+  --type-ui-size: var(--font-size-16);
+  --type-nav-size: var(--font-size-14);
+  --type-meta-size: var(--font-size-12);
+  --type-brand-weight: var(--font-weight-bold);
+  --type-tagline-weight: var(--font-weight-bold);
+  --type-toc-weight: var(--font-weight-regular);
+  --type-toc-heading-weight: var(--font-weight-bold);
+  --type-code-family: var(--font-family-mono);
+  --type-code-size: var(--font-size-16);
+  --type-code-weight: var(--font-weight-regular);
+  --type-line-height: var(--line-height-auto);
+  --type-letter-spacing: var(--letter-spacing-default);
+
+  /* Font shorthands: font: var(--font-body); */
+  --font-name: var(--type-name-weight) var(--type-name-size) / var(--type-line-height) var(--type-name-family);
+  --font-name-compact: var(--type-name-weight) var(--type-name-size-compact) / var(--type-line-height) var(--type-name-family);
+  --font-page-title: var(--type-page-title-weight) var(--type-page-title-size) / var(--type-line-height) var(--type-page-title-family);
+  --font-card-title: var(--type-card-title-weight) var(--type-card-title-size) / var(--type-line-height) var(--type-card-title-family);
+  --font-article-heading: var(--type-article-heading-weight) var(--type-article-heading-size) / var(--type-line-height) var(--type-article-heading-family);
+  --font-article-subheading: var(--type-article-heading-weight) var(--type-article-subheading-size) / var(--type-line-height) var(--type-article-heading-family);
+  --font-body: var(--type-body-weight) var(--type-body-size) / var(--type-line-height) var(--type-body-family);
+  --font-body-strong: var(--type-body-strong-weight) var(--type-body-size) / var(--type-line-height) var(--type-body-family);
+  --font-ui: var(--type-ui-weight) var(--type-ui-size) / var(--type-line-height) var(--type-ui-family);
+  --font-nav: var(--type-ui-weight) var(--type-nav-size) / var(--type-line-height) var(--type-ui-family);
+  --font-meta: var(--type-ui-weight) var(--type-meta-size) / var(--type-line-height) var(--type-ui-family);
+  --font-brand: var(--type-brand-weight) var(--type-nav-size) / var(--type-line-height) var(--type-ui-family);
+  --font-tagline: var(--type-tagline-weight) var(--type-ui-size) / var(--type-line-height) var(--type-ui-family);
+  --font-toc: var(--type-toc-weight) var(--type-ui-size) / var(--type-line-height) var(--type-ui-family);
+  --font-toc-heading: var(--type-toc-heading-weight) var(--type-ui-size) / var(--type-line-height) var(--type-ui-family);
+  --font-code: var(--type-code-weight) var(--type-code-size) / var(--type-line-height) var(--type-code-family);
+
+  /* Layout: 100px baseline. Override locally when the layout needs it.
+   * Extra inset is additive; compact overrides must be chosen by the caller.
+   * No automatic mobile breakpoint is prescribed in this first version.
+   */
+  --page-gutter-base: var(--space-100);
+  --page-gutter-extra: var(--space-0);
+  --page-gutter: calc(var(--page-gutter-base) + var(--page-gutter-extra));
+  --layout-gap: var(--space-10);
+  --layout-padding: var(--space-10);
+  --article-media-max-width: 800px;
+  --article-portrait-max-height: 800px;
+  --article-toc-width: 300px;
+
+  /* Shared control tokens: size class determines border, not component name.
+   * Choose small explicitly; no guessed size threshold or fixed height.
+   */
+  --control-font: var(--font-ui);
+  --control-text: var(--text-primary);
+  --control-bg: var(--bg-control);
+  --control-border-color: var(--border-control);
+  --control-border-width: var(--border-width-regular);
+  --control-small-border-width: var(--border-width-thin);
+  --control-border-style: var(--border-style-default);
+  --control-radius: var(--radius-none);
+  --control-padding-block: var(--space-10);
+  --control-padding-inline: var(--space-30);
+  --control-gap: var(--space-10);
+
+  /* Header / footer / navigation */
+  --nav-font: var(--font-nav);
+  --nav-text: var(--text-primary);
+  --nav-link-gap: var(--space-20);
+  --nav-group-gap: var(--space-15);
+  --nav-padding-block: var(--space-15);
+  --nav-padding-inline: var(--page-gutter);
+  --brand-font: var(--font-brand);
+  --brand-text: var(--text-brand);
+  --footer-font: var(--font-nav);
+  --footer-padding-block: var(--nav-padding-block);
+  --footer-padding-inline: var(--page-gutter);
+
+  /* Page heading */
+  --page-title-font: var(--font-page-title);
+  --page-title-text: var(--text-primary);
+  --page-title-padding-block-start: var(--space-30);
+  --page-title-padding-block-end: var(--space-10);
+  --page-title-padding-inline: var(--page-gutter);
+  --page-description-font: var(--font-ui);
+
+  /* Buttons / search / filters */
+  --button-font: var(--control-font);
+  --button-border-width: var(--control-border-width);
+  --button-small-border-width: var(--control-small-border-width);
+  --button-padding-block: var(--control-padding-block);
+  --button-padding-inline: var(--control-padding-inline);
+  --search-font: var(--control-font);
+  --search-border-width: var(--control-border-width);
+  --search-padding-block: var(--control-padding-block);
+  --search-padding-inline: var(--control-padding-inline);
+  --filter-bar-gap: var(--space-10);
+  --filter-bar-padding: var(--space-10);
+
+  /* Project cards: widths are layout outputs, not fixed tokens. */
+  --card-title-font: var(--font-card-title);
+  --card-title-text: var(--text-primary);
+  --card-meta-font: var(--font-meta);
+  --card-meta-text: var(--text-meta);
+  --card-radius: var(--radius-none);
+  --card-cover-placeholder-bg: var(--color-placeholder-pink);
+
+  /* Article / media */
+  --article-body-font: var(--font-body);
+  --article-body-text: var(--text-primary);
+  --article-heading-font: var(--font-article-heading);
+  --article-subheading-font: var(--font-article-subheading);
+  --article-caption-font: var(--font-body);
+  --article-caption-text: var(--text-caption);
+  --article-meta-font: var(--font-meta);
+  --article-meta-text: var(--text-meta);
+  --article-media-placeholder-bg: var(--color-gray-200);
+  --toc-font: var(--font-toc);
+  --toc-heading-font: var(--font-toc-heading);
+  --divider-padding-block: var(--space-10);
+
+  /* Tables: per-side rules remain structural, not a single all-sides border. */
+  --table-body-font: var(--font-body);
+  --table-heading-font: var(--font-body-strong);
+  --table-border-color: var(--border-table);
+  --table-cell-padding-block: var(--space-5);
+  --table-cell-padding-inline: var(--space-0);
+
+  /* Code / embedded media controls */
+  --code-font: var(--font-code);
+  --code-text: var(--text-primary);
+  --code-block-bg: var(--bg-code);
+  --code-block-padding: var(--space-10);
+  --code-block-gap: var(--space-10);
+  --code-block-radius: var(--radius-none);
+  --code-control-border-width: var(--control-small-border-width);
+  --code-control-padding-inline: var(--space-15);
+  --media-title-font: var(--font-body-strong);
+
+  /* Callouts: bind background and label to one of the four status pairs. */
+  --callout-font: var(--font-body);
+  --callout-label-font: var(--font-body-strong);
+  --callout-text: var(--status-text);
+  --callout-padding-block: var(--space-10);
+  --callout-padding-inline: var(--space-15);
+  --callout-gap: var(--space-3);
+  --callout-radius: var(--radius-none);
+}
+
+/* Usage example (opt in, not applied by this token file):
+ * .page { background: var(--bg-page); padding-inline: var(--page-gutter); }
+ * .article { font: var(--article-body-font); color: var(--article-body-text); }
+ * .button {
+ *   font: var(--button-font);
+ *   color: var(--control-text);
+ *   background: var(--control-bg);
+ *   border: var(--button-border-width) var(--control-border-style) var(--control-border-color);
+ *   border-radius: var(--control-radius);
+ *   padding: var(--button-padding-block) var(--button-padding-inline);
+ * }
+ * .button[data-size="small"] { --button-border-width: var(--button-small-border-width); }
+ * .section-with-extra-inset { --page-gutter-extra: 10px; }
+ * .callout[data-status="info"] {
+ *   background: var(--status-info-bg);
+ *   color: var(--callout-text);
+ * }
+ * .callout[data-status="info"] .callout-title { color: var(--status-info-label); }
+ */
