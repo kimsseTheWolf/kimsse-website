@@ -41,9 +41,10 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.huge-title {
-		font-size: var(--font-size-128);
-		font-weight: var(--font-weight-bold);
-		font-family: var(--font-family-display);
+		font-size: var(--type-name-size);
+		font-weight: var(--type-name-weight);
+		font-family: var(--type-name-family);
+		line-height: 100%;
 	}
 
 	.smaller-texts {
@@ -54,5 +55,15 @@ import Layout from '../layouts/Layout.astro';
 
 	.gray-text {
 		color: var(--color-gray-500);
+	}
+
+	@media (max-width: 767px) {
+		.art-block {
+			display: none;
+		}
+
+		.huge-title {
+			font-size: var(--type-name-size-compact);
+		}
 	}
 </style>
