@@ -10,6 +10,7 @@
     align-items: center;
     text-decoration: none;
     color: inherit;
+    transition: all 0.1s;
 }
 
 .link-btn::after {
@@ -17,17 +18,20 @@
     display: inline-block;
     opacity: 0;
     transform: translateX(-10);
-    transition: all 0.1s;
+}
+
+.link-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .link-btn:hover::after {
     opacity: 1;
     transform: translateX(0);
-    cursor: pointer;
-    text-decoration: underline;
 }
 
-.link-btn:active::after {
+.link-btn:active {
     scale: 0.9;
+    color: var(--color-gray-500);
 }
 </style>
