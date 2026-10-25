@@ -3,7 +3,7 @@ import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 import LinkButton from './ui/LinkButton.vue';
 </script>
 <template>
-    <HeaderFooterContainer>
+    <HeaderFooterContainer class="footer">
         <template #Left>
             <div style="color: var(--color-gray-500);">BJ_2026</div>
             <LinkButton> GITHUB</LinkButton>
@@ -16,4 +16,7 @@ import LinkButton from './ui/LinkButton.vue';
     </HeaderFooterContainer>
 </template>
 <style lang="css" scoped>
+.footer {
+    margin-top: auto;
+}
 </style>
