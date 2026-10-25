@@ -23,6 +23,8 @@
 .link-btn:hover::after {
     opacity: 1;
     transform: translateX(0);
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .link-btn:active::after {
