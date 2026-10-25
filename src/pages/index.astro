@@ -11,7 +11,9 @@ import Layout from '../layouts/Layout.astro';
 			&nbsp;
 		</div>
 		<div class="content-block">
-			<div>Test</div>
+			<div class="huge-title">Bohan<br>Jin</div>
+			<div class="smaller-texts">Music Technologist / Computer Graphics / Creative Developer</div>
+			<div class="smaller-texts gray-text">Carnegie Mellon University - Music & Technology<br>Class of 2030</div>
 		</div>
 	</div>
 </Layout>
@@ -36,5 +38,21 @@ import Layout from '../layouts/Layout.astro';
 		flex: 1;
 		height: 100%;
 		justify-content: center;
+	}
+
+	.huge-title {
+		font-size: var(--font-size-128);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-display);
+	}
+
+	.smaller-texts {
+		font-size: var(--font-size-16);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-mono);
+	}
+
+	.gray-text {
+		color: var(--color-gray-500);
 	}
 </style>
