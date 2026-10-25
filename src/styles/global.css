@@ -98,6 +98,7 @@
   --space-25: 25px;
   --space-30: 30px;
   --space-100: 100px;
+  --mobile-breakpoint: 767px;
 
   /* Primitive geometry */
   --border-width-thin: 1px;
