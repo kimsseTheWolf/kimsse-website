@@ -7,6 +7,7 @@ import LinkButton from './ui/LinkButton.vue';
 
 const isMenuOpen = ref(false);
 const isHeaderHidden = ref(false);
+const scrollY = ref(0);
 let lastScrollY = 0;
 const SCROLL_THRESHOLD = 5;
 
@@ -16,6 +17,7 @@ const toggleMenu = () => {
 
 const handleScroll = () => {
     const currentScrollY = window.scrollY;
+    scrollY.value = currentScrollY;
 
     if (isMenuOpen.value || currentScrollY <= 0) {
         isHeaderHidden.value = false;
@@ -36,6 +38,7 @@ watch(isMenuOpen, (open) => {
 
 onMounted(() => {
     lastScrollY = window.scrollY;
+    scrollY.value = window.scrollY;
     window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
@@ -45,7 +48,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="header-wrapper" :class="{ hidden: isHeaderHidden }">
+    <div class="header-wrapper" :class="{ hidden: isHeaderHidden, 'scrolled': scrollY > 0 }">
     <HeaderFooterContainer>
         <template #Left>
             <div class="link-btn" style="color: var(--color-gray-500);">
@@ -110,6 +113,12 @@ onUnmounted(() => {
 
     transform: translateY(0);
     transition: transform 300ms ease;
+
+    border-bottom: 1px solid transparent;
+}
+
+.header-wrapper.scrolled {
+    border-bottom-color: var(--color-gray-500);
 }
 
 .header-wrapper.hidden {
