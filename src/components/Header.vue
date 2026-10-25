@@ -1,18 +1,51 @@
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 
 import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 import LinkButton from './ui/LinkButton.vue';
 
 const isMenuOpen = ref(false);
+const isHeaderHidden = ref(false);
+let lastScrollY = 0;
+const SCROLL_THRESHOLD = 5;
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
+
+const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (isMenuOpen.value || currentScrollY <= 0) {
+        isHeaderHidden.value = false;
+        lastScrollY = Math.max(currentScrollY, 0);
+        return;
+    }
+
+    const delta = currentScrollY - lastScrollY;
+    if (Math.abs(delta) <= SCROLL_THRESHOLD) return;
+
+    isHeaderHidden.value = delta > 0;
+    lastScrollY = currentScrollY;
+};
+
+watch(isMenuOpen, (open) => {
+    if (open) isHeaderHidden.value = false;
+});
+
+onMounted(() => {
+    lastScrollY = window.scrollY;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
+    <div class="header-wrapper" :class="{ hidden: isHeaderHidden }">
     <HeaderFooterContainer>
         <template #Left>
             <div class="link-btn" style="color: var(--color-gray-500);">
@@ -63,9 +96,32 @@ const toggleMenu = () => {
         </LinkButton>
     </div>
 </div>
+    </div>
 </template>
 
 <style scoped>
+.header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+    background-color: var(--color-paper);
+
+    transform: translateY(0);
+    transition: transform 300ms ease;
+}
+
+.header-wrapper.hidden {
+    transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-wrapper {
+        transition: none;
+    }
+}
+
 .desktop-nav {
     display: inline-flex;
 }
