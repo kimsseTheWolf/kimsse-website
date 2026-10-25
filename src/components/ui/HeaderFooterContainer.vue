@@ -31,4 +31,11 @@
     height: 100%;
     align-items: center;
 }
+
+@media (max-width: 767px) {
+    .header-container {
+        padding-left: var(--space-20);
+        padding-right: var(--space-20);
+    }
+}
 </style>

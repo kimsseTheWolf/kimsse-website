@@ -6,4 +6,71 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+	<div class="homepage-main-container">
+		<div class="content-block art-block">
+			&nbsp;
+		</div>
+		<div class="content-block">
+			<div class="huge-title">Bohan<br>Jin</div>
+			<div class="smaller-texts">Music Technologist / Computer Graphics / Creative Developer</div>
+			<div class="smaller-texts gray-text">Carnegie Mellon University - Music & Technology<br>Class of 2030</div>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.homepage-main-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 0;
+		padding: var(--space-10);
+		flex: 1;
+		
+		min-width: 0;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	.content-block {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-10);
+		padding: var(--space-10);
+		flex: 1;
+		height: 100%;
+		justify-content: center;
+
+		min-width: 0;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	.huge-title {
+		font-size: var(--type-name-size);
+		font-weight: var(--type-name-weight);
+		font-family: var(--type-name-family);
+		line-height: 100%;
+	}
+
+	.smaller-texts {
+		font-size: var(--font-size-16);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-mono);
+	}
+
+	.gray-text {
+		color: var(--color-gray-500);
+	}
+
+	@media (max-width: 767px) {
+		.art-block {
+			display: none;
+		}
+
+		.huge-title {
+			font-size: var(--type-name-size-compact);
+		}
+	}
+</style>
