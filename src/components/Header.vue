@@ -1,5 +1,6 @@
 <script setup>
 import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
+import LinkButton from './ui/LinkButton.vue';
 </script>
 <template>
     <HeaderFooterContainer>
@@ -7,17 +8,18 @@ import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
             <div class="link-btn" style="color: var(--color-gray-500);">[KIMSSETHEWOLF/]</div>
         </template>
         <template #Right>
-            <div class="link-btn desktop-nav">WORKS</div>
-            <div class="link-btn desktop-nav">RESEARCH</div>
-            <div class="link-btn desktop-nav">ABOUT</div>
-            <div class="link-btn desktop-nav">CONTACT</div>
+            <LinkButton class="desktop-nav">WORKS</LinkButton>
+            <LinkButton class="desktop-nav">RESEARCH</LinkButton>
+            <LinkButton class="desktop-nav">ABOUT</LinkButton>
+            <LinkButton class="desktop-nav">CONTACT</LinkButton>
             <div class="link-btn mobile-nav" style="font-size: var(--font-size-24);"></div>
         </template>
     </HeaderFooterContainer>
+    <div class="expand-header"></div>
 </template>
 <style scoped>
 .desktop-nav {
-    display: block;
+    display: inline-flex;
 }
 
 .mobile-nav {
@@ -37,6 +39,12 @@ import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 .link-btn:active {
     scale: 0.9;
     color: var(--color-gray-500);
+}
+
+.expand-header {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 @media (max-width: 767px) {
