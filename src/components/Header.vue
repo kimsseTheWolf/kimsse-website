@@ -4,14 +4,14 @@ import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 <template>
     <HeaderFooterContainer>
         <template #Left>
-            <div style="color: var(--color-gray-500);">[KIMSSETHEWOLF/]</div>
+            <div class="link-btn" style="color: var(--color-gray-500);">[KIMSSETHEWOLF/]</div>
         </template>
         <template #Right>
-            <div class="desktop-nav">WORKS</div>
-            <div class="desktop-nav">RESEARCH</div>
-            <div class="desktop-nav">ABOUT</div>
-            <div class="desktop-nav">CONTACT</div>
-            <div class="mobile-nav" style="font-size: var(--font-size-24);"></div>
+            <div class="link-btn desktop-nav">WORKS</div>
+            <div class="link-btn desktop-nav">RESEARCH</div>
+            <div class="link-btn desktop-nav">ABOUT</div>
+            <div class="link-btn desktop-nav">CONTACT</div>
+            <div class="link-btn mobile-nav" style="font-size: var(--font-size-24);"></div>
         </template>
     </HeaderFooterContainer>
 </template>
@@ -22,6 +22,21 @@ import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 
 .mobile-nav {
     display: none;
+}
+
+.link-btn {
+    user-select: none;
+    transition: all 0.1s;
+}
+
+.link-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.link-btn:active {
+    scale: 0.9;
+    color: var(--color-gray-500);
 }
 
 @media (max-width: 767px) {
