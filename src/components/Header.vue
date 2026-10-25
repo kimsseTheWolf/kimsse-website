@@ -1,22 +1,70 @@
+
 <script setup>
+import { ref } from 'vue';
+
 import HeaderFooterContainer from './ui/HeaderFooterContainer.vue';
 import LinkButton from './ui/LinkButton.vue';
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+};
 </script>
+
 <template>
     <HeaderFooterContainer>
         <template #Left>
-            <div class="link-btn" style="color: var(--color-gray-500);">[KIMSSETHEWOLF/]</div>
+            <div class="link-btn" style="color: var(--color-gray-500);">
+                [KIMSSETHEWOLF/]
+            </div>
         </template>
+
         <template #Right>
             <LinkButton class="desktop-nav">WORKS</LinkButton>
             <LinkButton class="desktop-nav">RESEARCH</LinkButton>
             <LinkButton class="desktop-nav">ABOUT</LinkButton>
             <LinkButton class="desktop-nav">CONTACT</LinkButton>
-            <div class="link-btn mobile-nav" style="font-size: var(--font-size-24);"></div>
+
+            <button
+                class="link-btn mobile-nav"
+                type="button"
+                :aria-expanded="isMenuOpen"
+                aria-controls="mobile-header-menu"
+                aria-label="Toggle menu"
+                @click="toggleMenu"
+            >
+                
+            </button>
         </template>
     </HeaderFooterContainer>
-    <div class="expand-header"></div>
+
+    <div
+    class="expand-wrapper"
+    :class="{ open: isMenuOpen }"
+    :inert="!isMenuOpen"
+>
+    <div class="expand-header">
+
+        <LinkButton class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
+            WORKS
+        </LinkButton>
+
+        <LinkButton class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
+            RESEARCH
+        </LinkButton>
+
+        <LinkButton class="mobile-menu-item" style="--i: 2; --reverse-i: 1">
+            ABOUT
+        </LinkButton>
+
+        <LinkButton class="mobile-menu-item" style="--i: 3; --reverse-i: 0">
+            CONTACT
+        </LinkButton>
+    </div>
+</div>
 </template>
+
 <style scoped>
 .desktop-nav {
     display: inline-flex;
@@ -41,11 +89,88 @@ import LinkButton from './ui/LinkButton.vue';
     color: var(--color-gray-500);
 }
 
-.expand-header {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* ==========================
+   Expand animation
+   ========================== */
+
+.expand-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    visibility: hidden;
+    transition:
+        grid-template-rows 300ms ease 420ms,
+        visibility 0s linear 720ms;
 }
+
+.expand-wrapper.open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+
+    transition:
+        grid-template-rows 300ms ease,
+        visibility 0s;
+}
+
+.expand-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-12);
+
+    border-top: 1px solid var(--color-gray-500);
+    border-bottom: 1px solid var(--color-gray-500);
+
+    padding: 0 var(--space-100);
+    margin: 0;
+}
+
+/* Animate padding alongside height */
+.expand-wrapper.open .expand-header {
+    padding-top: var(--space-15);
+    padding-bottom: var(--space-15);
+}
+
+.expand-header {
+    transition: padding 300ms ease;
+}
+
+/* ==========================
+   Items animation
+   ========================== */
+
+.menu-label,
+.mobile-menu-item {
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+
+    transition-delay: calc(var(--reverse-i) * 60ms);
+
+    font-size: var(--font-size-32);
+    font-weight: var(--font-weight-bold);
+}
+
+.expand-wrapper.open .menu-label,
+.expand-wrapper.open .mobile-menu-item {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition-delay: calc(300ms + var(--i) * 60ms);
+}
+
+/* ==========================
+   Responsive
+   ========================== */
 
 @media (max-width: 767px) {
     .desktop-nav {
@@ -53,7 +178,32 @@ import LinkButton from './ui/LinkButton.vue';
     }
 
     .mobile-nav {
-        display: block;
+        display: inline-flex;
+        align-items: center;
+
+        font-size: var(--font-size-24);
+
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        font-family: inherit;
+    }
+}
+
+@media (min-width: 768px) {
+    .expand-wrapper {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .expand-wrapper,
+    .expand-header,
+    .menu-label,
+    .mobile-menu-item {
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
     }
 }
 </style>
