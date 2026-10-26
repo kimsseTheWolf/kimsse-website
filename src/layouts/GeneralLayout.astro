@@ -2,6 +2,7 @@
 import "../styles/global.css"
 import Layout from "./Layout.astro";
 import Divider from "../components/ui/Divider.vue";
+import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
 ---
 
 <Layout>
@@ -18,7 +19,7 @@ import Divider from "../components/ui/Divider.vue";
             <Divider/>
         </div>
         <div class="page-content">
-            
+            <InfinitePrinter client:load/>
         </div>
         <div class="page-header page-footer">
             <Divider/>
@@ -79,5 +80,12 @@ import Divider from "../components/ui/Divider.vue";
     .footer {
         font-family: var(--font-family-mono);
         color: var(--color-gray-500);
+    }
+
+    @media (max-width: 767px) {
+        .main-page-container {
+            padding-left: var(--space-20);
+            padding-right: var(--space-20);
+        }
     }
 </style>
