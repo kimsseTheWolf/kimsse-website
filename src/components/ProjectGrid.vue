@@ -3,13 +3,13 @@ import ProjectcCard from './ProjectcCard.vue';
 </script>
 <template>
     <div class="project-grid-container">
-        <ProjectcCard/>
+        <ProjectcCard v-for="i in [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]"/>
     </div>
 </template>
 <style lang="css" scoped>
 .project-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
     column-gap: 25px;
     row-gap: 60px;
 

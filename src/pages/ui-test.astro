@@ -1,6 +1,7 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
+import ProjectGrid from "../components/ProjectGrid.vue";
 ---
 
 <GeneralLayout>
@@ -9,6 +10,7 @@ import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
     <div slot="description">This is the description of the page</div>
     <div slot="secondary-descriptions">Estimated Reading Time: Forever</div>
     <div slot="content">
-        <InfinitePrinter client:load/>
+        <!-- <InfinitePrinter client:load/> -->
+        <ProjectGrid client:load/>
     </div>
 </GeneralLayout>

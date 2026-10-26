@@ -29,11 +29,11 @@ const props = defineProps({
         <div class="project-card-cover-container">
             <img src=""/>
         </div>
+        <Divider :color="'transparent'"/>
+        <div class="tags">Tags</div>
+        <div class="title">Title <span class="arrow"></span></div>
+        <div class="description">This is the description of the project</div>
     </div>
-    <Divider :color="'transparent'"/>
-    <div class="tags"></div>
-    <div class="title"></div>
-    <div class="description"></div>
 </template>
 <style lang="css" scoped>
 .project-card-container {
@@ -41,15 +41,23 @@ const props = defineProps({
     flex-direction: column;
     width: 100%;
     min-width: 0;
-    gap: var(--space-10);
+    gap: var(--space-5);
     margin: 0;
     padding: 0;
-    background-color: var(--color-gray-500);
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.1s;
 }
+
+.project-card-container:active {
+    scale: 0.95;
+}
+
 .project-card-cover-container {
     width: 100%;
     aspect-ratio: 16/10;
     overflow: hidden;
+    background-color: var(--color-gray-500);
 }
 
 .project-card-cover-container img {
@@ -68,6 +76,14 @@ const props = defineProps({
     font-family: var(--font-family-mono);
     font-size: var(--font-size-24);
     font-weight: var(--font-weight-extra-bold);
+}
+
+.arrow {
+    display: none;
+}
+
+.project-card-container:hover .arrow {
+    display: inline-block;
 }
 
 .description {
