@@ -1,4 +1,5 @@
 <script setup>
+import Divider from './ui/Divider.vue';
 </script>
 <template>
     <div class="project-card-container">
@@ -6,6 +7,7 @@
             <img src=""/>
         </div>
     </div>
+    <Divider :color="'transparent'"/>
     <div class="tags"></div>
     <div class="title"></div>
     <div class="description"></div>
@@ -19,6 +21,7 @@
     gap: var(--space-10);
     margin: 0;
     padding: 0;
+    background-color: var(--color-gray-500);
 }
 .project-card-cover-container {
     width: 100%;
@@ -30,5 +33,22 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.tags {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-12);
+    color: var(--color-gray-500);
+}
+
+.title {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-extra-bold);
+}
+
+.description {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-16);
 }
 </style>
