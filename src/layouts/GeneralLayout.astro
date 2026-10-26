@@ -1,0 +1,80 @@
+---
+import "../styles/global.css"
+import Layout from "./Layout.astro";
+---
+
+<Layout>
+    <div class="main-page-container">
+        <div class="page-header">
+            <div class="description">PATH / TO / CURRENT / PAGE</div>
+            <div class="title">WORKS_</div>
+            <div class="description">
+                The description of the page goes here!
+            </div>
+            <div class="description extra-info">
+                2026   Research / Audio   Est Reading Time: 2 min   Source
+            </div>
+        </div>
+        <div class="page-content">
+
+        </div>
+        <div class="page-header page-footer">
+            <div class="footer">
+                /Good things come to those who wait/
+            </div>
+        </div>
+    </div>
+</Layout>
+<style>
+    .main-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: var(--space-100);
+        padding-right: var(--space-100);
+
+        min-width: 0;
+		max-width: 100%;
+		box-sizing: border-box;
+        flex: 1;
+    }
+
+    .page-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-10);
+
+        padding: 0;
+        padding-top: var(--page-title-padding-block-start);
+        padding-bottom: var(--page-title-padding-block-end);
+
+        width: 100%;
+    }
+
+    .page-footer {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title {
+        font-family: var(--font-family-mono);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-64);
+    }
+
+    .description {
+        font-family: var(--font-family-mono);
+    }
+
+    .extra-info {
+        color: var(--color-gray-500);
+    }
+
+    .footer {
+        font-family: var(--font-family-mono);
+        color: var(--color-gray-500);
+    }
+</style>
