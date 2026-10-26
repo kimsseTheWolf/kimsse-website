@@ -1,5 +1,28 @@
 <script setup>
 import Divider from './ui/Divider.vue';
+
+const props = defineProps({
+    cover: {
+        type: String,
+        default: ""
+    },
+    title : {
+        type: String,
+        default: "Project"
+    },
+    description: {
+        type: String,
+        default: "This is my amazing project!"
+    },
+    releaseYear: {
+        type: Number,
+        default: 2026
+    },
+    tags: {
+        type: Array,
+        default: []
+    }
+})
 </script>
 <template>
     <div class="project-card-container">
