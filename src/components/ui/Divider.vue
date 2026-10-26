@@ -1,3 +1,13 @@
+<script setup>
+import { ref } from 'vue';
+
+const props = defineProps({
+    color: {
+        type: String,
+        default: "var(--color-black)"
+    }
+})
+</script>
 <template>
     <div class="divider">
         &nbsp;
@@ -10,6 +20,6 @@
     margin: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-black);
+    background-color: v-bind('props.color');
 }
 </style>
