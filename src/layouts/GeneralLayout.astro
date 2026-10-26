@@ -2,24 +2,27 @@
 import "../styles/global.css"
 import Layout from "./Layout.astro";
 import Divider from "../components/ui/Divider.vue";
-import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
 ---
 
 <Layout>
     <div class="main-page-container">
         <div class="page-header">
-            <div class="description">PATH / TO / CURRENT / PAGE</div>
-            <div class="title">WORKS_</div>
             <div class="description">
-                The description of the page goes here!
+                <slot name="breadcrumb"/>
+            </div>
+            <div class="title">
+                <slot name="title"/>
+            </div>
+            <div class="description">
+                <slot name="description"/>
             </div>
             <div class="description extra-info">
-                2026   Research / Audio   Est Reading Time: 2 min   Source
+                <slot name="secondary-descriptions"/>
             </div>
             <Divider/>
         </div>
         <div class="page-content">
-            <InfinitePrinter client:load/>
+            <slot name="content"/>
         </div>
         <div class="page-header page-footer">
             <Divider/>

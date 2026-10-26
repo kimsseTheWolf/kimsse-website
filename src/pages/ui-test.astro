@@ -1,6 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
+import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
 ---
 
-<GeneralLayout></GeneralLayout>
+<GeneralLayout>
+    <div slot="breadcrumb">PATH / TO / PAGE</div>
+    <div slot="title">WORKS_</div>
+    <div slot="description">This is the description of the page</div>
+    <div slot="secondary-descriptions">Estimated Reading Time: Forever</div>
+    <div slot="content">
+        <InfinitePrinter client:load/>
+    </div>
+</GeneralLayout>
