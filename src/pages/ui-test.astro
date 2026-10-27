@@ -1,7 +1,7 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
-import InfinitePrinter from "../components/ui/InfinitePrinter.vue"
 import ProjectGrid from "../components/ProjectGrid.vue";
+import ProjectCard from "../components/ProjectCard.vue";
 ---
 
 <GeneralLayout>
@@ -11,6 +11,42 @@ import ProjectGrid from "../components/ProjectGrid.vue";
     <div slot="secondary-descriptions">Estimated Reading Time: Forever</div>
     <div slot="content">
         <!-- <InfinitePrinter client:load/> -->
-        <ProjectGrid client:load/>
+        <ProjectGrid client:load>
+            <ProjectCard 
+            cover=""
+            title="I Love To Hang Out With My Friends"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover=""
+            title="Reiteration"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover=""
+            title="Dreamanizer"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover=""
+            title="Siren Mix"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover=""
+            title="Blabla"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+        </ProjectGrid>
     </div>
 </GeneralLayout>

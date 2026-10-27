@@ -27,12 +27,12 @@ const props = defineProps({
 <template>
     <div class="project-card-container">
         <div class="project-card-cover-container">
-            <img src=""/>
+            <img :src="props.cover"/>
         </div>
         <Divider :color="'transparent'"/>
         <div class="tags">Tags</div>
-        <div class="title">Title <span class="arrow"></span></div>
-        <div class="description">This is the description of the project</div>
+        <div class="title">{{ props.title }} <span class="arrow"></span></div>
+        <div class="description">{{ props.description }}</div>
     </div>
 </template>
 <style lang="css" scoped>

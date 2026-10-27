@@ -1,9 +1,6 @@
-<script setup>
-import ProjectcCard from './ProjectcCard.vue';
-</script>
 <template>
     <div class="project-grid-container">
-        <ProjectcCard v-for="i in [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]"/>
+        <slot></slot>
     </div>
 </template>
 <style lang="css" scoped>
