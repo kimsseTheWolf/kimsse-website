@@ -2,6 +2,7 @@
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import ProjectGrid from "../components/ProjectGrid.vue";
 import ProjectCard from "../components/ProjectCard.vue";
+import ArticleNavigator from "../components/ArticleNavigator.vue"
 ---
 
 <GeneralLayout>
@@ -11,7 +12,7 @@ import ProjectCard from "../components/ProjectCard.vue";
     <div slot="secondary-descriptions">Estimated Reading Time: Forever</div>
     <div slot="content">
         <!-- <InfinitePrinter client:load/> -->
-        <ProjectGrid client:load>
+        <!-- <ProjectGrid client:load>
             <ProjectCard 
             cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
             title="I Love To Hang Out With My Friends"
@@ -47,6 +48,7 @@ import ProjectCard from "../components/ProjectCard.vue";
             releaseYear={2026}
             tags={["Music", "Song Production"]}
             />
-        </ProjectGrid>
+        </ProjectGrid> -->
+        <ArticleNavigator/>
     </div>
 </GeneralLayout>
