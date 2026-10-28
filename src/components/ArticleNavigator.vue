@@ -61,6 +61,10 @@ const processedList = computed(() => {
 
     font-family: var(--font-family-mono);
     font-size: var(--font-size-16);
+
+    position: sticky;
+    top: 60px;
+    align-self: start;
 }
 
 .container-title {
