@@ -15,3 +15,5 @@ const works = defineCollection({
         tags: z.array(z.string()).default([])
     })
 })
+
+export const collections = { works };

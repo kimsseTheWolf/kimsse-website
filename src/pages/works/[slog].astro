@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import InfinitePrinter from "../../components/ui/InfinitePrinter.vue";
+
+export const getStaticPaths = (async () => {
+    const entries = await getCollection("works")
+
+    return entries.map((entry) => ({
+        params: {
+            slog: entry.id
+        },
+        props: {entry}
+    }));
+}) satisfies GetStaticPaths;
+
+const {entry} = Astro.props
+const {Content, headings} = await render(entry)
+---
+
+<ArticleLayout headings={headings}>
+    <div slot="breadcrumb">PATH / TO / ARTICLE</div>
+    <div slot="title">{entry.data.title}</div>
+    <div slot="description">{entry.data.description}</div>
+    <div slot="secondary-descriptions">{entry.data.date.toString()} / {entry.data.tags.toString()} / Est Reading Time: Nan min</div>
+    <div slot="content">
+        <Content/>
+    </div>
+</ArticleLayout>

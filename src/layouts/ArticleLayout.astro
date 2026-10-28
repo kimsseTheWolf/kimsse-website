@@ -1,6 +1,16 @@
 ---
+import type { MarkdownHeading } from "astro";
 import GeneralLayout from "./GeneralLayout.astro";
 import ArticleNavigator from "../components/ArticleNavigator.vue";
+
+interface Props {
+    headings? :MarkdownHeading[]
+}
+
+const {
+    headings = []
+} = Astro.props
+
 ---
 
 <GeneralLayout>
@@ -17,7 +27,7 @@ import ArticleNavigator from "../components/ArticleNavigator.vue";
         <slot name="secondary-descriptions"/>
     </div>
     <div slot="content" class="article-view">
-        <ArticleNavigator/>
+        <ArticleNavigator structure={headings} client:load/>
         <div class="article-section">
             <slot name="content"></slot>
         </div>
@@ -36,5 +46,7 @@ import ArticleNavigator from "../components/ArticleNavigator.vue";
     flex-direction: column;
     gap: var(--space-10);
     max-width: 800px;
+
+    font-family: var(--font-family-sans);
 }
 </style>
