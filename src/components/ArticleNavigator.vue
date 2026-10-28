@@ -55,7 +55,8 @@ const processedList = computed(() => {
     flex-direction: column;
     width: 300px;
     height: fit-content;
-    padding: var(--space-10);
+    padding: var(--space-0);
+    padding-top: var(--space-10);
     gap: var(--space-10);
 
     font-family: var(--font-family-mono);
