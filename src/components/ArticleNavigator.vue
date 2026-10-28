@@ -2,6 +2,8 @@
 import Divider from './ui/Divider.vue';
 import LinkButton from './ui/LinkButton.vue';
 
+import { computed } from 'vue';
+
 /**
  * [
   { depth: 1, slug: "my-project", text: "My Project" },
@@ -16,20 +18,35 @@ import LinkButton from './ui/LinkButton.vue';
 
 const props = defineProps({
     structure: {
-        type: Object,
-        default: {}
+        type: Array,
+        default: [
+            { depth: 1, slug: "my-project", text: "My Project" },
+            { depth: 2, slug: "introduction", text: "Introduction" },
+            { depth: 2, slug: "design", text: "Design" },
+            { depth: 3, slug: "ui-design", text: "UI Design" },
+            { depth: 3, slug: "architecture", text: "Architecture" },
+            { depth: 2, slug: "implementation", text: "Implementation" },
+            { depth: 2, slug: "conclusion", text: "Conclusion" }
+        ]
     }
+})
+
+const processedList = computed(() => {
+    let displayList = []
+    for (let i = 0; i < props.structure.length; i++) {
+        if (props.structure[i].depth < 3) {
+            displayList.push(props.structure[i])
+        }
+    }
+
+    return displayList
 })
 </script>
 <template>
     <div class="article-navigator-container">
         <div class="container-title">On this page</div>
         <Divider/>
-        <LinkButton>01 / Introduction</LinkButton>
-        <LinkButton>02 / Backgorunds</LinkButton>
-        <LinkButton>03 / Procedures</LinkButton>
-        <LinkButton>04 / Data & Analysis</LinkButton>
-        <LinkButton>05 / Conclusion</LinkButton>
+        <LinkButton v-for="i in processedList">{{ i.text }}</LinkButton>
     </div>
 </template>
 <style lang="css" scoped>
