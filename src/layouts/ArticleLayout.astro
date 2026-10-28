@@ -1,0 +1,39 @@
+---
+import GeneralLayout from "./GeneralLayout.astro";
+import ArticleNavigator from "../components/ArticleNavigator.vue";
+---
+
+<GeneralLayout>
+    <div slot="breadcrumb">
+        <slot name="breadcrumb"/>
+    </div>
+    <div slot="title">
+        <slot name="title"/>
+    </div>
+    <div slot="description">
+        <slot name="description"/>
+    </div>
+    <div slot="secondary-descriptions">
+        <slot name="secondary-descriptions"/>
+    </div>
+    <div slot="content" class="article-view">
+        <ArticleNavigator/>
+        <div class="article-section">
+            <slot name="content"></slot>
+        </div>
+    </div>
+</GeneralLayout>
+
+<style>
+.article-view {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-10);
+}
+
+.article-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+}
+</style>
