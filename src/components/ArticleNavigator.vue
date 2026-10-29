@@ -74,4 +74,11 @@ function goto(link) {
 .container-title {
     font-weight: var(--font-weight-bold);
 }
+
+@media (max-width: 767px) {
+    .article-navigator-container {
+        width: 100%;
+        position: unset;
+    }
+}
 </style>

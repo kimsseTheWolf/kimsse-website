@@ -42,6 +42,12 @@ const {
     gap: var(--space-30);
 }
 
+@media (max-width: 767px) {
+    .article-view {
+        flex-direction: column;
+    }
+}
+
 .article-section {
     display: flex;
     flex-direction: column;
@@ -137,5 +143,10 @@ const {
 .article-section :global(pre.astro-code .line) {
     display: block;
     white-space: pre;
+}
+
+.article-section :global(iframe) {
+    width: 100%;
+    aspect-ratio: 16/9;
 }
 </style>
