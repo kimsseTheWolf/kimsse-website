@@ -1,6 +1,6 @@
 ---
 title: "AI-Based Music to Dance Synthesis and Rendering"
-author: "JIN Bohan"
+tags: ["Music", "Research"]
 date: "2024-08-21"
 description: "2024 S.T. Yau High School Science Award Research Report"
 ---
@@ -43,18 +43,12 @@ Music will hugely affect the dance's motion. Hence, it is also very important to
 
 ### 3.1 The Transformer Model
 
-The main building block for this model is the so-called Scaled-dot-Product Attention [3]. The Scaled-dot Product Attention function can calculate vectors Q (Query), K (Key), and V (Value) simultaneously and calculate the weights of the values, which represent the relationships of the values. The dot product of vector Q with all keys is performed, and the dot product is divided by the square root of the vector’s dimension dₖ, and the SoftMax of the product is calculated. Finally, the SoftMax value will perform another multiplication with vector V and calculate the values' weights. Here is the general formula for the Scaled Dot-Product Attention function:
+The main building block for this model is the so-called Scaled-dot-Product Attention [3]. The Scaled-dot Product Attention function can calculate vectors $Q$ (Query), $K$ (Key), and $V$ (Value) simultaneously and calculate the weights of the values, which represent the relationships of the values. The dot product of vector $Q$ with all keys is performed, and the dot product is divided by the square root of the vector’s dimension $d_k$, and the SoftMax of the product is calculated. Finally, the SoftMax value will perform another multiplication with vector $V$ and calculate the values' weights. Here is the general formula for the Scaled Dot-Product Attention function:
 
-![Equation (1)](/paper-assets/equation-01.png)
-
-<details>
-<summary>Equation (1): LaTeX source</summary>
-
-```latex
+$$
 \operatorname{Attention}(Q,K,V)=\operatorname{softmax}\!\left(\frac{QK^{T}}{\sqrt{d_k}}\right)V
-```
-
-</details>
+\tag{1}
+$$
 
 Figure 1 also explains this formula visually:
 
@@ -62,7 +56,7 @@ Figure 1 also explains this formula visually:
 
 Figure 1: The visual model of Scaled Dot-Product Attention [3].
 
-Multiple Scaled Dot-Product Attentions get together and formed Multi-Head Attentions, which is the most important building block of a transformer model, which we will explain later. The Multi-head Attention gets Query, Key, and Value vectors and perform a linear transformation for each of those. The multi-head attention will apply the Q, K and V vectors into each layer of scaled dot-product attention, and finally concatenate all results and perform another linear transformation, which is represented in the graph below:
+Multiple Scaled Dot-Product Attentions get together and formed Multi-Head Attentions, which is the most important building block of a transformer model, which we will explain later. The Multi-head Attention gets Query, Key, and Value vectors and perform a linear transformation for each of those. The multi-head attention will apply the $Q$, $K$ and $V$ vectors into each layer of scaled dot-product attention, and finally concatenate all results and perform another linear transformation, which is represented in the graph below:
 
 ![Figure 2](/paper-assets/figure-02.png)
 
@@ -78,61 +72,37 @@ Figure 3: The Visual Model of the Transformer Model [3]
 
 SMPL [15] is the main model used in this project to visualize generated motions, which are represented by the rotation angles of all joints. Here are two formulas that are essential in the process of calculation. The first formula is used to calculate the transformation matrix of joints according to a vector of turning angles related to a particular part of the model, which uses the Rodrigues formula to convert the vectors into rotation matrixes as follows:
 
-![Equation (2)](/paper-assets/equation-02.png)
-
-<details>
-<summary>Equation (2): LaTeX source</summary>
-
-```latex
+$$
 \exp(\vec{\omega}_j)=I+\hat{\bar{\omega}}_j\sin(\lVert\vec{\omega}_j\rVert)+\hat{\bar{\omega}}_j^{2}\cos(\lVert\vec{\omega}_j\rVert)
-```
+\tag{2}
+$$
 
-</details>
+Where $\vec{\omega}_j$ represents the relative rotation angle of a joint related to its parents in the kinematic tree and $I$ represents the 3x3 identity matrix. In order to calculate the world positions of the joints during the transformation, we also need to calculate the transformation of each joint relative to their T-pose positions with the formula as follows:
 
-Where ω⃗<sub>j</sub> represents the relative rotation angle of a joint related to its parents in the kinematic tree and I represents the 3x3 identity matrix. In order to calculate the world positions of the joints during the transformation, we also need to calculate the transformation of each joint relative to their T-pose positions with the formula as follows:
-
-![Equation (3)](/paper-assets/equation-03.png)
-
-<details>
-<summary>Equation (3): LaTeX source</summary>
-
-```latex
+$$
 G'_k(\vec{\theta},J)=G_k(\vec{\theta},J)G_k(\vec{\theta}^{*},J)^{-1}
-```
+\tag{3}
+$$
 
-</details>
-
-Where the T-pose of the model is represented by θ⃗<sup>*</sup> in the formula and θ represents the rotations of joints in that frame k, and J represents the matrix contains the transformation information of each joint of the model. With the help of formula 2 and formula 3, the absolute positions and rotations of each joint in the model can be easily calculated. Please refer to the paper of SMPL model for the absolute positions’ calculation formula [15].
+Where the T-pose of the model is represented by $\vec{\theta}^{*}$ in the formula and $\theta$ represents the rotations of joints in that frame $k$, and $J$ represents the matrix contains the transformation information of each joint of the model. With the help of formula 2 and formula 3, the absolute positions and rotations of each joint in the model can be easily calculated. Please refer to the paper of SMPL model for the absolute positions’ calculation formula [15].
 
 Also, different individuals have different body shapes. For example, some people are taller than others or some people have larger stomachs than others. SMPL models have the compatibility to express different body shapes with the following formula:
 
-![Equation (4)](/paper-assets/equation-04.png)
-
-<details>
-<summary>Equation (4): LaTeX source</summary>
-
-```latex
+$$
 B_S(c;S)=\sum_{n=1}^{|\vec{\beta}|}\beta_n S_n
-```
+\tag{4}
+$$
 
-</details>
-
-Where the β represents the linear shape coefficient, and S<sub>n</sub> represents the orthonormal principal components of shape displacements, which are the simplified and standardized data from the original shape displacements [15]. With this formula, SMPL model is compatible with expressing a variety types of body shapes.
+Where the $\beta$ represents the linear shape coefficient, and $S_n$ represents the orthonormal principal components of shape displacements, which are the simplified and standardized data from the original shape displacements [15]. With this formula, SMPL model is compatible with expressing a variety types of body shapes.
 
 Because of the different body shapes, the joint locations are also different from each other, and it is very important to automatically adjust the joint locations in different body shapes. Otherwise, there would be rendering issue while SMPL is trying to do the skinning for the skeleton. Hence the formula below will automatically calculate different joint locations:
 
-![Equation (5)](/paper-assets/equation-05.png)
-
-<details>
-<summary>Equation (5): LaTeX source</summary>
-
-```latex
+$$
 J(\vec{\beta};\mathcal{J},\bar{T},S)=\mathcal{J}\!\left(\bar{T}+B_S(\vec{\beta};S)\right)
-```
+\tag{5}
+$$
 
-</details>
-
-Where T̄ represents the template location matrix and 𝒥 represents the matrix that transforms rest vertices into rest joints [15]. The matrix 𝒥 contains example poses from many different people with variety types of poses so that it will make sure that the SMPL model is compatible with all types of body shapes with different joint locations and with different poses. The formulas above are some of the most essential formulas that make sure the model will render and work properly.
+Where $\bar{T}$ represents the template location matrix and $\mathcal{J}$ represents the matrix that transforms rest vertices into rest joints [15]. The matrix $\mathcal{J}$ contains example poses from many different people with variety types of poses so that it will make sure that the SMPL model is compatible with all types of body shapes with different joint locations and with different poses. The formulas above are some of the most essential formulas that make sure the model will render and work properly.
 
 ### 3.3 Music Features
 
@@ -166,18 +136,12 @@ Figure 5: The Chroma Feature of an Audio Represented by Graph [17], where the X-
 
 The basic formula that calculates the chroma of audio is represented as below:
 
-![Equation (6)](/paper-assets/equation-06.png)
-
-<details>
-<summary>Equation (6): LaTeX source</summary>
-
-```latex
+$$
 \operatorname{chroma}[k,t]=\sum_{m\in F(k)}S[m,t]
-```
+\tag{6}
+$$
 
-</details>
-
-Where k represents the pitch class at time frame k, S[m,t] represents the value of power spectrogram value at frequency bin m and time frame t, and F(k) represents the frequency bins of the particular audio.
+Where $k$ represents the pitch class at time frame $k$, $S[m,t]$ represents the value of power spectrogram value at frequency bin $m$ and time frame $t$, and $F(k)$ represents the frequency bins of the particular audio.
 
 One-hot peaks and one-bot beats are also used to extract the pattern of rhythms. The tempo of the music is also extracted, which is also a rhythmic feature to see the speed of the music. The zero-crossing rate is also used in optimization and can recognize any part with no volume. The Spectral Centroid and Spectral Bandwidth features are also used in optimization, which indicates the frequency of energy a clip of music concentrates and shows how wide the energy spreads. All of these features above, which represent the melodic, rhythmic features, and characteristics of a music clip, help optimize the training result by having more features for the models to classify different types of music.
 
@@ -214,7 +178,7 @@ We compared our optimized model with the baseline model to see the differences a
 **Table 1. FID Scores Between Different Dance Generation Models**
 
 <table>
-<thead><tr><th>Model Name</th><th>Motion Quality (FID<sub>k</sub>)</th></tr></thead>
+<thead><tr><th>Model Name</th><th>Motion Quality ($\mathrm{FID}_k$)</th></tr></thead>
 <tbody>
 <tr><td>Li et al. [19]</td><td>86.43</td></tr>
 <tr><td>Dancenet [20]</td><td>69.18</td></tr>
@@ -226,7 +190,7 @@ We compared our optimized model with the baseline model to see the differences a
 
 Note: The realism and quality of generation can be measured by FID scores. Lower FID scores represent more realistic motion. The data of our base model and other models are from the paper of the base model.
 
-As we can see from the table above, our optimized FACT model has the lowest FIDₖ score. A lower FID score means the motions we generated have smaller differences compared to the videos danced by real humans, which means the dance motions generated by our improved model are the most realistic among the different models we are comparing here. Also, you can see the differences in the dance poses between the base model and the generated models:
+As we can see from the table above, our optimized FACT model has the lowest $\mathrm{FID}_k$ score. A lower FID score means the motions we generated have smaller differences compared to the videos danced by real humans, which means the dance motions generated by our improved model are the most realistic among the different models we are comparing here. Also, you can see the differences in the dance poses between the base model and the generated models:
 
 ![Figure 9A](/paper-assets/figure-09a.png)
 
