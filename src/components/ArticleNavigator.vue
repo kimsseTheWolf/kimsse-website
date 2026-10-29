@@ -50,7 +50,7 @@ function goto(link) {
     <div class="article-navigator-container">
         <div class="container-title">On this page</div>
         <Divider/>
-        <LinkButton v-for="i in processedList" @click="goto('#'+i.slug)">{{ i.text }}</LinkButton>
+        <LinkButton v-for="i in processedList" :link="'#'+i.slug">{{ i.text }}</LinkButton>
     </div>
 </template>
 <style lang="css" scoped>

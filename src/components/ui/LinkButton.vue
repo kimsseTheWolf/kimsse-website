@@ -1,5 +1,19 @@
+<script setup>
+
+const props = defineProps({
+    link: {
+        type: String,
+        default: ""
+    }
+})
+
+function goto() {
+    window.location.href = props.link
+}
+
+</script>
 <template>
-    <div class="link-btn">
+    <div class="link-btn" @click="goto()">
         <slot></slot>
     </div>
 </template>
