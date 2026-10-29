@@ -41,12 +41,16 @@ const processedList = computed(() => {
 
     return displayList
 })
+
+function goto(link) {
+    window.location.href = link
+}
 </script>
 <template>
     <div class="article-navigator-container">
         <div class="container-title">On this page</div>
         <Divider/>
-        <LinkButton v-for="i in processedList">{{ i.text }}</LinkButton>
+        <LinkButton v-for="i in processedList" @click="goto('#'+i.slug)">{{ i.text }}</LinkButton>
     </div>
 </template>
 <style lang="css" scoped>
