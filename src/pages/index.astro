@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 	<div class="homepage-main-container">
 		<div class="content-block art-block">
-			&nbsp;
+			<img src="AVATAR.PNG" class="left-avatar"/>
 		</div>
 		<div class="content-block">
 			<div class="huge-title">Bohan<br>Jin</div>
@@ -47,6 +47,11 @@ import Layout from '../layouts/Layout.astro';
 		box-sizing: border-box;
 	}
 
+	.art-block {
+		justify-content: center;
+		align-items: center;
+	}
+
 	.huge-title {
 		font-size: var(--type-name-size);
 		font-weight: var(--type-name-weight);
@@ -62,6 +67,11 @@ import Layout from '../layouts/Layout.astro';
 
 	.gray-text {
 		color: var(--color-gray-500);
+	}
+
+	.left-avatar {
+		width: 60%;
+		border-radius: 50%;
 	}
 
 	@media (max-width: 767px) {
