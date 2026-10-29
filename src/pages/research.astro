@@ -1,0 +1,18 @@
+---
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+import ProjectGrid from "../components/ProjectGrid.vue";
+
+import { getCollection } from "astro:content";
+
+const works = (await getCollection("research"))
+---
+
+<GeneralLayout>
+    <div slot="breadcrumb" style="display: none;"/>
+    <div slot="title">RESEARCH_</div>
+    <div slot="description">All research projects in one place</div>
+    <div slot="secondary-descriptions" style="display: none;"/>
+    <div slot="content">
+        <ProjectGrid contentType={"research"} projects={works} client:load></ProjectGrid>
+    </div>
+</GeneralLayout>

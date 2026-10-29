@@ -13,6 +13,6 @@ const works = (await getCollection("works"))
     <div slot="description">All previous works, in one place.</div>
     <div slot="secondary-descriptions" style="display: none;"/>
     <div slot="content">
-        <ProjectGrid projects={works} client:load></ProjectGrid>
+        <ProjectGrid contentType={"works"} projects={works} client:load></ProjectGrid>
     </div>
 </GeneralLayout>

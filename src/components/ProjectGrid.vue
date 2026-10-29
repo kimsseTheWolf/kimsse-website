@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, type PropType } from 'vue';
 import ProjectCard from './ProjectCard.vue';
 
 
@@ -16,13 +16,18 @@ const props = defineProps({
         }>, 
 
         default: []
+    },
+
+    contentType: {
+        type: String as PropType<"works" | "research">,
+        default: "works"
     }
 })
 
 const projectList = computed(() => {
     const p = props.projects.map((entry) => ({
         ...entry,
-        href: '/works/' + entry.id
+        href: `/${props.contentType}/` + entry.id
     }))
 
     return p
