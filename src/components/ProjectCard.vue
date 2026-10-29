@@ -60,6 +60,10 @@ const props = defineProps({
     background-color: var(--color-gray-500);
 }
 
+.project-card-container:hover .project-card-cover-container {
+    filter: brightness(0.9);
+}
+
 .project-card-cover-container img {
     width: 100%;
     height: 100%;
