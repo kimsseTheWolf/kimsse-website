@@ -25,6 +25,8 @@ function goto() {
     text-decoration: none;
     color: inherit;
     transition: all 0.1s;
+
+    font-family: var(--font-family-mono);
 }
 
 .link-btn::after {
