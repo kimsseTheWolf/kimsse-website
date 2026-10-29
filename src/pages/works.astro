@@ -1,0 +1,17 @@
+---
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+import ProjectGrid from "../components/ProjectGrid.vue";
+import ProjectCard from "../components/ProjectCard.vue";
+---
+
+<GeneralLayout>
+    <div slot="breadcrumb" style="display: none;"/>
+    <div slot="title">WORKS_</div>
+    <div slot="description">All previous works, in one place.</div>
+    <div slot="secondary-descriptions" style="display: none;"/>
+    <div slot="content">
+        <ProjectGrid client:load>
+            
+        </ProjectGrid>
+    </div>
+</GeneralLayout>
