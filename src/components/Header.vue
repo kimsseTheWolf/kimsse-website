@@ -45,20 +45,24 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);
 });
+
+function goto(link) {
+    window.location.href = link
+}
 </script>
 
 <template>
     <div class="header-wrapper" :class="{ hidden: isHeaderHidden, 'scrolled': scrollY > 0 }">
     <HeaderFooterContainer>
         <template #Left>
-            <div class="link-btn" style="color: var(--color-gray-500);">
+            <div class="link-btn" style="color: var(--color-gray-500);" @click="goto('/')">
                 [KIMSSETHEWOLF/]
             </div>
         </template>
 
         <template #Right>
-            <LinkButton class="desktop-nav">WORKS</LinkButton>
-            <LinkButton class="desktop-nav">RESEARCH</LinkButton>
+            <LinkButton class="desktop-nav" link="/works">WORKS</LinkButton>
+            <LinkButton class="desktop-nav" link="research">RESEARCH</LinkButton>
             <LinkButton class="desktop-nav">ABOUT</LinkButton>
             <LinkButton class="desktop-nav">CONTACT</LinkButton>
 
