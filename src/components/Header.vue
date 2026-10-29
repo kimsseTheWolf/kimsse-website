@@ -86,11 +86,11 @@ function goto(link) {
 >
     <div class="expand-header">
 
-        <LinkButton class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
+        <LinkButton link="works" class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
             WORKS
         </LinkButton>
 
-        <LinkButton class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
+        <LinkButton link="research" class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
             RESEARCH
         </LinkButton>
 
