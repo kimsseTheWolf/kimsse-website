@@ -9,7 +9,7 @@ description: "2024 S.T. Yau High School Science Award Research Report"
 
 JIN Bohan · Bancroft School
 
-![Unnumbered dance sequence shown above the abstract](/paper-assets/abstract-dance-sequence.png)
+![Unnumbered dance sequence shown above the abstract](/ai-music-to-dance-generation-assets/abstract-dance-sequence.png)
 
 ## Abstract
 
@@ -52,19 +52,19 @@ $$
 
 Figure 1 also explains this formula visually:
 
-![Figure 1](/paper-assets/figure-01.png)
+![Figure 1](/ai-music-to-dance-generation-assets/figure-01.png)
 
 Figure 1: The visual model of Scaled Dot-Product Attention [3].
 
 Multiple Scaled Dot-Product Attentions get together and formed Multi-Head Attentions, which is the most important building block of a transformer model, which we will explain later. The Multi-head Attention gets Query, Key, and Value vectors and perform a linear transformation for each of those. The multi-head attention will apply the $Q$, $K$ and $V$ vectors into each layer of scaled dot-product attention, and finally concatenate all results and perform another linear transformation, which is represented in the graph below:
 
-![Figure 2](/paper-assets/figure-02.png)
+![Figure 2](/ai-music-to-dance-generation-assets/figure-02.png)
 
 Figure 2: The Visual Model of Multi-Head Attention [3]
 
 For the transformer model, just like other neural transduction models, has an encoder and decoder. During the encoding process, the model will map the series of input into a continuous representation, and the decoder will use the generated continuous representations to generate the output sequence. For each sublayer of the encoder, it contains a multi-head attention and a simple and fully connected feed-forward network. The structure of the sublayer of the decoder is similar but the decoder contains an extra masked multi-head attention. A transformer model contains the same number of encoder layers and decoder layers, and usually the number of layers is 6. Figure 3 below shows the visualization of the transformer models:
 
-![Figure 3](/paper-assets/figure-03.png)
+![Figure 3](/ai-music-to-dance-generation-assets/figure-03.png)
 
 Figure 3: The Visual Model of the Transformer Model [3]
 
@@ -114,7 +114,7 @@ Music features are also very important information while generating dance poses,
 
 We used the publicly available audio processing toolbox Librosa [11] to extract music features and optimize training results. We extract the envelope of a music clip to see the changes in amplitude and frequency over time. We also extract the MFCCs (Mel Frequency Cepstral Coefficients) [9] and chroma [10] of the music clip to extract the music's characteristics and melodic features, which the graphs of MFCC and the chroma extracted by Librosa are shown and explained as below:
 
-![Figure 4](/paper-assets/figure-04.png)
+![Figure 4](/ai-music-to-dance-generation-assets/figure-04.png)
 
 Figure 4: The MFCC feature of An Audio Represented in Graph [16, 22]
 
@@ -130,7 +130,7 @@ The MFCC can be calculated with the following process [18]:
 
 5. Discrete Cosine Transform (DCT): Highlights the most significant features of the sound in each frame, which effectively captures the characteristics of a sound.
 
-![Figure 5](/paper-assets/figure-05.png)
+![Figure 5](/ai-music-to-dance-generation-assets/figure-05.png)
 
 Figure 5: The Chroma Feature of an Audio Represented by Graph [17], where the X-axis represents the time and the Y-axis represents the different chroma of audio.
 
@@ -147,7 +147,7 @@ One-hot peaks and one-bot beats are also used to extract the pattern of rhythms.
 
 ### 4.2 Dance Poses Generation
 
-![Figure 6](/paper-assets/figure-06.png)
+![Figure 6](/ai-music-to-dance-generation-assets/figure-06.png)
 
 Figure 6: The main processes of Dance Poses Generation. Rotation angles and extracted audio features are input into the model to generate new dance motions, and the generated dance motion in the form of NPY file will be fed into the automated rendering pipeline for model rendering. The automated rendering pipeline will apply the generated motion onto an FBX model and render inside Blender.
 
@@ -161,13 +161,13 @@ One of the improvements we made here is providing a usable dance pose renderer u
 
 Footnote 1: [SMPL-to-FBX](https://github.com/softcat477/SMPL-to-FBX)
 
-![Figure 7](/paper-assets/figure-07.png)
+![Figure 7](/ai-music-to-dance-generation-assets/figure-07.png)
 
 Figure 7: Joints used by the converter to incorporate the generated motions into FBX models. The corresponding joint and the numbering are listed on the left, and the positions of each joint are presented on the right.
 
 The whole converting process can be visualized as below:
 
-![Figure 8](/paper-assets/figure-08.png)
+![Figure 8](/ai-music-to-dance-generation-assets/figure-08.png)
 
 Figure 8: Visual Representation of Converter. With the provided SMPL model and generated motions, the converter will automatically convert into FBX and render into animation.
 
@@ -192,15 +192,15 @@ Note: The realism and quality of generation can be measured by FID scores. Lower
 
 As we can see from the table above, our optimized FACT model has the lowest $\mathrm{FID}_k$ score. A lower FID score means the motions we generated have smaller differences compared to the videos danced by real humans, which means the dance motions generated by our improved model are the most realistic among the different models we are comparing here. Also, you can see the differences in the dance poses between the base model and the generated models:
 
-![Figure 9A](/paper-assets/figure-09a.png)
+![Figure 9A](/ai-music-to-dance-generation-assets/figure-09a.png)
 
 Figure 9A: Motion Comparison between the base model (right) and our improved model (left) on the same frame
 
-![Figure 9B](/paper-assets/figure-09b.png)
+![Figure 9B](/ai-music-to-dance-generation-assets/figure-09b.png)
 
 Figure 9B: Motion Comparison between the base model (left) and our improved model (right) on the same frame
 
-![Figure 9C](/paper-assets/figure-09c.png)
+![Figure 9C](/ai-music-to-dance-generation-assets/figure-09c.png)
 
 Figure 9C: Motion Comparison between the base model (right) and our improved model (left) on the same frame.
 
