@@ -49,4 +49,56 @@ const {
 
     font-family: var(--font-family-sans);
 }
+
+.article-section :global(is(h1, h2, h3, h4, h5, h6)): {
+    font-weight: var(--font-weight-black);
+}
+
+.article-section :global(p) {
+    line-height: 1.6;
+}
+
+.article-section :global(a) {
+    color: dodgerblue;
+}
+
+.article-section :global(img) {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 100%;
+    max-height: 500px;
+
+    object-fit: contain;
+    margin-inline: auto;
+}
+
+/* Table */
+.article-section :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+/* Table Cells */
+.article-section :global(th),
+.article-section :global(td) {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+/* Table Headers */
+.article-section :global(th) {
+    font-weight: 700;
+    border-bottom: 2px solid #888;
+}
+
+/* Table Rows */
+.article-section :global(tr) {
+    background: transparent;
+}
+
 </style>
