@@ -30,7 +30,7 @@ const props = defineProps({
             <img :src="props.cover"/>
         </div>
         <Divider :color="'transparent'"/>
-        <div class="tags">Tags</div>
+        <div class="tags">{{ props.tags.toString().replaceAll(",", ", ") }}</div>
         <div class="title">{{ props.title }} <span class="arrow"></span></div>
         <div class="description">{{ props.description }}</div>
     </div>

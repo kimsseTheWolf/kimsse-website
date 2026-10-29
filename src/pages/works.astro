@@ -1,7 +1,10 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import ProjectGrid from "../components/ProjectGrid.vue";
-import ProjectCard from "../components/ProjectCard.vue";
+
+import { getCollection } from "astro:content";
+
+const works = (await getCollection("works"))
 ---
 
 <GeneralLayout>
@@ -10,8 +13,6 @@ import ProjectCard from "../components/ProjectCard.vue";
     <div slot="description">All previous works, in one place.</div>
     <div slot="secondary-descriptions" style="display: none;"/>
     <div slot="content">
-        <ProjectGrid client:load>
-            
-        </ProjectGrid>
+        <ProjectGrid projects={works} client:load></ProjectGrid>
     </div>
 </GeneralLayout>
