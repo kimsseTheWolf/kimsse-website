@@ -1,0 +1,14 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import InfinitePrinter from "../components/ui/InfinitePrinter.vue";
+---
+
+<ArticleLayout>
+    <div slot="breadcrumb">TEST / ARTICLE_TEST</div>
+    <div slot="title">ARTICLE_TEST_</div>
+    <div slot="description">This page demonstrates what will the article pages looks like. Will be removed in the future.</div>
+    <div slot="secondary-descriptions">TEST PAGES</div>
+    <div slot="content">
+        <InfinitePrinter client:load/>
+    </div>
+</ArticleLayout>

@@ -1,0 +1,98 @@
+---
+import "../styles/global.css"
+import Layout from "./Layout.astro";
+import Divider from "../components/ui/Divider.vue";
+---
+
+<Layout>
+    <div class="main-page-container">
+        <div class="page-header">
+            <div class="description">
+                <slot name="breadcrumb"/>
+            </div>
+            <div class="title">
+                <slot name="title"/>
+            </div>
+            <div class="description">
+                <slot name="description"/>
+            </div>
+            <div class="description extra-info">
+                <slot name="secondary-descriptions"/>
+            </div>
+            <Divider/>
+        </div>
+        <div class="page-content">
+            <slot name="content"/>
+        </div>
+        <div class="page-header page-footer">
+            <Divider/>
+            <div class="footer">
+                /Good things come to those who wait/
+            </div>
+        </div>
+    </div>
+</Layout>
+<style>
+    .main-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: var(--space-100);
+        padding-right: var(--space-100);
+
+        min-width: 0;
+		max-width: 100%;
+		box-sizing: border-box;
+        flex: 1;
+    }
+
+    .page-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-10);
+
+        padding: 0;
+        padding-top: var(--page-title-padding-block-start);
+        padding-bottom: var(--page-title-padding-block-end);
+
+        width: 100%;
+    }
+
+    .page-content {
+        width: 100%;
+    }
+
+    .page-footer {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title {
+        font-family: var(--font-family-mono);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-64);
+    }
+
+    .description {
+        font-family: var(--font-family-mono);
+    }
+
+    .extra-info {
+        color: var(--color-gray-500);
+    }
+
+    .footer {
+        font-family: var(--font-family-mono);
+        color: var(--color-gray-500);
+    }
+
+    @media (max-width: 767px) {
+        .main-page-container {
+            padding-left: var(--space-20);
+            padding-right: var(--space-20);
+        }
+    }
+</style>

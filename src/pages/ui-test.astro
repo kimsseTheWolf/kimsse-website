@@ -1,0 +1,54 @@
+---
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+import ProjectGrid from "../components/ProjectGrid.vue";
+import ProjectCard from "../components/ProjectCard.vue";
+import ArticleNavigator from "../components/ArticleNavigator.vue"
+---
+
+<GeneralLayout>
+    <div slot="breadcrumb">PATH / TO / PAGE</div>
+    <div slot="title">WORKS_</div>
+    <div slot="description">This is the description of the page</div>
+    <div slot="secondary-descriptions">Estimated Reading Time: Forever</div>
+    <div slot="content">
+        <!-- <InfinitePrinter client:load/> -->
+        <!-- <ProjectGrid client:load>
+            <ProjectCard 
+            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            title="I Love To Hang Out With My Friends"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            title="Reiteration"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            title="Dreamanizer"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            title="Siren Mix"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+            <ProjectCard 
+            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            title="Blabla"
+            description="This is the description of the project"
+            releaseYear={2026}
+            tags={["Music", "Song Production"]}
+            />
+        </ProjectGrid> -->
+        <ArticleNavigator/>
+    </div>
+</GeneralLayout>
