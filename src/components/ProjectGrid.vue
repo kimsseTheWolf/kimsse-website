@@ -33,6 +33,15 @@ const projectList = computed(() => {
     return p
 })
 
+function getCover(coverInfo:String|undefined) {
+    if (coverInfo === undefined || coverInfo === "") {
+        return "https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+    }
+    else {
+        return coverInfo
+    }
+}
+
 function goto(link:string) {
     window.location.href = link
 }
@@ -41,7 +50,7 @@ function goto(link:string) {
 <template>
     <div class="project-grid-container">
         <ProjectCard v-for="i in projectList"
-            cover="https://images.pexels.com/photos/4253058/pexels-photo-4253058.jpeg"
+            :cover="getCover(i.data.cover)"
             :title="i.data.title"
             :description="i.data.description"
             :releaseYear="i.data.date.getFullYear()"
