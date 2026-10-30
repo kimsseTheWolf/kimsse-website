@@ -42,7 +42,7 @@
 
  @font-face {
     font-family: "JetBrainsMono NF";
-    src: url("/fonts/jetBrainsMonoNerdFont-Regular.ttf") format("ttf");
+    src: url("/fonts/JetBrainsMonoNerdFont-Regular.ttf") format("ttf");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
