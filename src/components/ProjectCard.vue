@@ -30,7 +30,7 @@ const props = defineProps({
             <img :src="props.cover"/>
         </div>
         <Divider :color="'transparent'"/>
-        <div class="tags">Tags</div>
+        <div class="tags">{{ props.tags.toString().replaceAll(",", ", ") }}</div>
         <div class="title">{{ props.title }} <span class="arrow"></span></div>
         <div class="description">{{ props.description }}</div>
     </div>
@@ -58,6 +58,10 @@ const props = defineProps({
     aspect-ratio: 16/10;
     overflow: hidden;
     background-color: var(--color-gray-500);
+}
+
+.project-card-container:hover .project-card-cover-container {
+    filter: brightness(0.9);
 }
 
 .project-card-cover-container img {

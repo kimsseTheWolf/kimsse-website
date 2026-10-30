@@ -45,22 +45,26 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);
 });
+
+function goto(link) {
+    window.location.href = link
+}
 </script>
 
 <template>
     <div class="header-wrapper" :class="{ hidden: isHeaderHidden, 'scrolled': scrollY > 0 }">
     <HeaderFooterContainer>
         <template #Left>
-            <div class="link-btn" style="color: var(--color-gray-500);">
+            <div class="link-btn" style="color: var(--color-gray-500);" @click="goto('/')">
                 [KIMSSETHEWOLF/]
             </div>
         </template>
 
         <template #Right>
-            <LinkButton class="desktop-nav">WORKS</LinkButton>
-            <LinkButton class="desktop-nav">RESEARCH</LinkButton>
-            <LinkButton class="desktop-nav">ABOUT</LinkButton>
-            <LinkButton class="desktop-nav">CONTACT</LinkButton>
+            <LinkButton class="desktop-nav" link="/works">WORKS</LinkButton>
+            <LinkButton class="desktop-nav" link="research">RESEARCH</LinkButton>
+            <!-- <LinkButton class="desktop-nav">ABOUT</LinkButton>
+            <LinkButton class="desktop-nav">CONTACT</LinkButton> -->
 
             <button
                 class="link-btn mobile-nav"
@@ -82,21 +86,21 @@ onUnmounted(() => {
 >
     <div class="expand-header">
 
-        <LinkButton class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
+        <LinkButton link="works" class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
             WORKS
         </LinkButton>
 
-        <LinkButton class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
+        <LinkButton link="research" class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
             RESEARCH
         </LinkButton>
 
-        <LinkButton class="mobile-menu-item" style="--i: 2; --reverse-i: 1">
+        <!-- <LinkButton class="mobile-menu-item" style="--i: 2; --reverse-i: 1">
             ABOUT
         </LinkButton>
 
         <LinkButton class="mobile-menu-item" style="--i: 3; --reverse-i: 0">
             CONTACT
-        </LinkButton>
+        </LinkButton> -->
     </div>
 </div>
     </div>

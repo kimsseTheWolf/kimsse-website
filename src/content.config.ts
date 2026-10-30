@@ -16,4 +16,18 @@ const works = defineCollection({
     })
 })
 
-export const collections = { works };
+const research = defineCollection({
+    loader: glob({
+        pattern: '**/*.mdx',
+        base: "./content/research"
+    }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        date: z.coerce.date(),
+        cover: z.string().optional(),
+        tags: z.array(z.string()).default([])
+    })
+})
+
+export const collections = { works, research };

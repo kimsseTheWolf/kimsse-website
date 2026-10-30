@@ -1,0 +1,37 @@
+---
+title: "Dreamanizer"
+tags: ["Music", "Interactive Art", "Creative Coding"]
+date: "2025-09-27"
+description: "An interactive audiovisual piece that transforms facial motion data into dynamic sound and spatialized audio."
+cover: "https://images.pexels.com/photos/2960891/pexels-photo-2960891.jpeg"
+---
+
+import LinkButton from "../../src/components/ui/LinkButton.vue"
+
+## Patch Download
+
+<LinkButton client:load link="/dreamanizer-assets/Dreamanizer.maxpat"> Download the patch (requires Max installed)!</LinkButton>
+
+## Artist Statement and Description
+
+Dreamanizer is an interactive audiovisual piece that transforms facial motion data into dynamic sound and spatialized audio. This software will captures user’s face through FaceOSC and sends the face position information into Max, and Max will apply face positioning data into the adjustments of pitch, filtering, and stereo panning. When face control is disabled, users can also interact through on-screen sliders and an automated panning system. At its core, this software explores the act of translating the positional changes of facial expression into shifting distributions of sound and energy across space. The experience of watching becomes inseparable from the experience of performing, as gestures and presence are rendered audible.
+
+## Audio Component
+
+The audio structure of Dreamanizer is built around a layered signal chain. Multiple sound sources are shaped and adjusted by gain and envelope modulation before being sent through a mixer and panning module. Also, several random elements are used to control the trigger of the sound, which constructs a dreamlike atmosphere for the sounds. The signal is then routed into a reverb unit (yafr2) that creates a dreamlike resonance, allowing the sound to expand into a more immersive space. The balance of left and right channels is continuously animated using amplitude modulation and complementary signal inversions, producing a sense of movement and instability. All signals are finally collected at the master gain, controlled by live.gain~, and projected outward through the digital-to-audio converter.
+
+## Visual and Data Component
+
+The visual element comes through data rather than literal imagery. FaceOSC captures positional and orientation data of the face and transmits it via UDP on port 8338. Within Max, these streams are routed to different functions: position is mapped to panning and filtering, scale is used to control pitch ranges or spectral brightness, and orientation is translated into subtle shifts in modulation depth. A toggle labeled “Enable Face Control” allows the user to switch between face-driven and manual control. When enabled, the patch uses the incoming OSC data as the primary driver of the mix, while a small indicator labeled “Face found?” shows whether a face has been detected. In manual mode, the performer interacts with a two-dimensional slider (pictslider), which simultaneously acts as a performance interface and as a visual display of the face’s position when face control is active.
+
+## Control Mapping
+
+There are several manual and automated controls mapped to several modulations in this software. An automated panning subsystem is built on a metro-random-line~ chain, which generates smooth, unpredictable swings across the stereo field. The speed of this motion is adjusted through an “Auto Pan Speed” slider. Meanwhile, facial position data is scaled into musically meaningful ranges, such as pitch spans between 35 and 120 or filter cutoffs between 60 and 100. The relative distance of the performer from the camera—registered through scale values—controls registers and density, while head tilts and turns alter the balance of modulation. These mappings merge together so that sound becomes a reflection of posture and movement, each gesture reinterpreted as sonic displacement.
+
+## Performance
+
+There are two modes a user can choose to perform using Dreamanizer. In manual mode, the user can disable face control and instead adjusts the main metro, the pictslider, and the auto pan system to adjust rhythm and sound textures. This allows for precise rhythmic adjustments and hands-on control of space. In face-control mode, the body becomes the instrument: the users move their faces inside the perspective the camera: turns their head, or leans across the frame, causing the audio to shift, swell, and fracture in response. Users are encouraged to blend the two modes, beginning with manual gestures to set a foundation before engaging face control for a heightened sense of immediacy and interaction. In this way, the piece emphasizes a dialogue between the precise control and the flexible adjustment, which makes the performance more unpredictable, diverse, and interesting.
+
+## Setup and Dependencies
+
+To begin, the performer must run FaceOSC and ensure it is sending data on port 8338. The Max patch is then opened, and the master audio engine is enabled with the on-screen toggle. The performer can choose whether to enable face control. In manual mode, only the built-in interface governs the sound, while in face-control mode, facial detection must be active, confirmed by the “Face found?” indicator. The auto pan and metro speeds can be adjusted throughout, offering different layers of rhythmic or spatial character.

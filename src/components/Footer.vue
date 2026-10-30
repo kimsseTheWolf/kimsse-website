@@ -6,9 +6,9 @@ import LinkButton from './ui/LinkButton.vue';
     <HeaderFooterContainer class="footer">
         <template #Left>
             <div style="color: var(--color-gray-500);">BJ_2026</div>
-            <LinkButton> GITHUB</LinkButton>
-            <LinkButton> YTB</LinkButton>
-            <LinkButton> INSTAGRAM</LinkButton>
+            <LinkButton link="https://github.com/kimsseTheWolf/kimsse-website"> GITHUB</LinkButton>
+            <!-- <LinkButton> YTB</LinkButton>
+            <LinkButton> INSTAGRAM</LinkButton> -->
         </template>
         <template #Right>
             <div></div>
