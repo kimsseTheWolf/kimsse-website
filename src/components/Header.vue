@@ -62,7 +62,7 @@ function goto(link) {
 
         <template #Right>
             <LinkButton class="desktop-nav" link="/works">WORKS</LinkButton>
-            <LinkButton class="desktop-nav" link="research">RESEARCH</LinkButton>
+            <LinkButton class="desktop-nav" link="/research">RESEARCH</LinkButton>
             <!-- <LinkButton class="desktop-nav">ABOUT</LinkButton>
             <LinkButton class="desktop-nav">CONTACT</LinkButton> -->
 
@@ -86,11 +86,11 @@ function goto(link) {
 >
     <div class="expand-header">
 
-        <LinkButton link="works" class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
+        <LinkButton link="/works" class="mobile-menu-item" style="--i: 0; --reverse-i: 3">
             WORKS
         </LinkButton>
 
-        <LinkButton link="research" class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
+        <LinkButton link="/research" class="mobile-menu-item" style="--i: 1; --reverse-i: 2">
             RESEARCH
         </LinkButton>
 
