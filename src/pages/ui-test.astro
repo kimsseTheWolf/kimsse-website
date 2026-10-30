@@ -1,8 +1,6 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
-import ProjectGrid from "../components/ProjectGrid.vue";
-import ProjectCard from "../components/ProjectCard.vue";
-import ArticleNavigator from "../components/ArticleNavigator.vue"
+import MediaPlayer from "../components/MediaPlayer.vue";
 ---
 
 <GeneralLayout>
@@ -49,6 +47,6 @@ import ArticleNavigator from "../components/ArticleNavigator.vue"
             tags={["Music", "Song Production"]}
             />
         </ProjectGrid> -->
-        <ArticleNavigator/>
+        <MediaPlayer client:load/>
     </div>
 </GeneralLayout>
