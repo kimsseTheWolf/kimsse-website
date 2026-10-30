@@ -63,8 +63,8 @@ function goto(link) {
         <template #Right>
             <LinkButton class="desktop-nav" link="/works">WORKS</LinkButton>
             <LinkButton class="desktop-nav" link="research">RESEARCH</LinkButton>
-            <LinkButton class="desktop-nav">ABOUT</LinkButton>
-            <LinkButton class="desktop-nav">CONTACT</LinkButton>
+            <!-- <LinkButton class="desktop-nav">ABOUT</LinkButton>
+            <LinkButton class="desktop-nav">CONTACT</LinkButton> -->
 
             <button
                 class="link-btn mobile-nav"
@@ -94,13 +94,13 @@ function goto(link) {
             RESEARCH
         </LinkButton>
 
-        <LinkButton class="mobile-menu-item" style="--i: 2; --reverse-i: 1">
+        <!-- <LinkButton class="mobile-menu-item" style="--i: 2; --reverse-i: 1">
             ABOUT
         </LinkButton>
 
         <LinkButton class="mobile-menu-item" style="--i: 3; --reverse-i: 0">
             CONTACT
-        </LinkButton>
+        </LinkButton> -->
     </div>
 </div>
     </div>
