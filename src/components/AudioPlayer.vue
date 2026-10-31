@@ -158,7 +158,9 @@ const currentTimePercent = computed(() => {
     flex-direction: row;
     justify-content: center;
     gap: var(--space-10);
-    padding: var(--space-10);
+    padding: var(--space-0);
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
     margin: 0;
 
     font-family: var(--font-family-sans);
@@ -167,9 +169,9 @@ const currentTimePercent = computed(() => {
     transition: all 0.1s;
 }
 
-.audio-player-container:hover {
+/* .audio-player-container:hover {
     background-color: rgba(0, 0, 0, 0.01);
-}
+} */
 
 .cover-image-container {
     background-image: v-bind("currentCover");
