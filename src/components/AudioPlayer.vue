@@ -1,11 +1,64 @@
-<script setup>
+<script setup lang="ts">
+import { computed, onMounted, ref, watch } from 'vue';
 import MarqueeText from './ui/MarqueeText.vue';
+
+const props = defineProps({
+    src: {
+        type: String,
+        default: ""
+    },
+    title: {
+        type: String,
+        default: "No Audio Playing"
+    },
+    artist: {
+        type: String,
+        default: "Unknown Artist"
+    },
+    cover: {
+        type: String,
+        default: ""
+    }
+})
+
+const audio = ref<HTMLAudioElement | null>(null)
+
+const currentCover = computed(() => {
+    if (props.cover === undefined || props.cover === "") {
+        return `url(https://images.pexels.com/photos/20385072/pexels-photo-20385072.jpeg)`
+    }
+    else {
+        return `url(${props.cover})`
+    }
+})
+
+const pauseBtnText = ref("")
+
+async function togglePlayStatus() {
+    if (audio.value?.paused) {
+        await audio.value?.play()
+    }
+    else {
+        audio.value?.pause()
+    }
+}
+
+function updatePlayStatus() {
+    if (audio.value?.paused) {
+        pauseBtnText.value = ""
+    }
+    else {
+        pauseBtnText.value = ""
+    }
+}
 
 </script>
 <template>
+    <audio :src="props.src" preload="metadata" ref="audio"
+    @play="updatePlayStatus" @pause="updatePlayStatus" @ended="updatePlayStatus"/>
     <div class="audio-player-container">
         <div class="cover-image-container">
-
+            
         </div>
         <div class="metadata-container">
             <MarqueeText class="title" text="Very Longggggggggg Tittttttttttttle Longggggggggg Tittttttttttttle"/>
@@ -16,7 +69,7 @@ import MarqueeText from './ui/MarqueeText.vue';
             <input class="progress-bar" type="range" min="0" max="100" value="0" step="1"/>
         </div>
         <div class="pause-container">
-            <div class="pause-btn"></div>
+            <div class="pause-btn" @click="togglePlayStatus">{{ pauseBtnText }}</div>
         </div>
     </div>
 </template>
@@ -40,10 +93,13 @@ import MarqueeText from './ui/MarqueeText.vue';
 }
 
 .cover-image-container {
-    background-color: var(--color-gray-500);
+    background-image: v-bind("currentCover");
     width: 75px;
     min-width: 75px;
     height: 75px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .metadata-container {
