@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import MarqueeText from './ui/MarqueeText.vue';
 
 const props = defineProps({
@@ -52,6 +52,11 @@ function updatePlayStatus() {
     }
 }
 
+const currentTime = ref(0)
+const currentTimePercent = computed(() => {
+    return `${currentTime.value}%`
+})
+
 </script>
 <template>
     <audio :src="props.src" preload="metadata" ref="audio"
@@ -63,10 +68,10 @@ function updatePlayStatus() {
         <div class="metadata-container">
             <MarqueeText class="title" text="Very Longggggggggg Tittttttttttttle Longggggggggg Tittttttttttttle"/>
             <div class="artist-and-length">
-                <div class="artist">zWeird Artist</div>
+                <div class="artist">z {{ currentTime.toString() }}</div>
                 <div class="length">01:23 / 04:56</div>
             </div>
-            <input class="progress-bar" type="range" min="0" max="100" value="0" step="1"/>
+            <input class="progress-bar" v-model.number="currentTime" type="range" min="0" max="100" step="0.01"/>
         </div>
         <div class="pause-container">
             <div class="pause-btn" @click="togglePlayStatus">{{ pauseBtnText }}</div>
@@ -131,7 +136,7 @@ function updatePlayStatus() {
     background: #d9d9d9;
     cursor: pointer;
 
-    --progress: 30%;
+    --progress: v-bind("currentTimePercent");
     background: linear-gradient(
         to right,
         black 0%,
