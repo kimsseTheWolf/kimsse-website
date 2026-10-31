@@ -53,14 +53,76 @@ function updatePlayStatus() {
 }
 
 const currentTime = ref(0)
+const duration = ref(0)
+const isDragging = ref(false)
+
+function updateDuration() {
+    if (!audio.value) return
+
+    console.log("Duration:", audio.value.duration)
+    console.log("ReadyState:", audio.value.readyState)
+    console.log("Seekable:", audio.value.seekable.length)
+
+    const d = audio.value.duration
+    duration.value = Number.isFinite(d) ? d : 0
+}
+
+function updateProgress() {
+    if (!audio.value) return
+
+    const d = audio.value.duration
+
+    if (Number.isFinite(d) && d > 0) {
+        duration.value = d
+    }
+
+    if (isDragging.value) return
+
+    currentTime.value = audio.value.currentTime
+}
+
+function startDragging() {
+    isDragging.value = true
+}
+
+function onSliderInput(event: Event) {
+    const target = event.target as HTMLInputElement
+    currentTime.value = target.valueAsNumber
+}
+
+function commitProgress() {
+    if (audio.value && duration.value > 0) {
+        audio.value.currentTime = currentTime.value
+    }
+
+    isDragging.value = false
+}
+
+function cancelDragging() {
+    isDragging.value = false
+    updateProgress()
+}
+
+function formatTime(seconds: number): string {
+    if (!Number.isFinite(seconds)) return "00:00"
+
+    const minutes = Math.floor(seconds / 60)
+    const secs = Math.floor(seconds % 60)
+
+    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`
+}
+
 const currentTimePercent = computed(() => {
-    return `${currentTime.value}%`
+    if (duration.value <= 0) return "0%"
+
+    return `${Math.min(100, Math.max(0, currentTime.value / duration.value * 100))}%`
 })
 
 </script>
 <template>
     <audio :src="props.src" preload="metadata" ref="audio"
-    @play="updatePlayStatus" @pause="updatePlayStatus" @ended="updatePlayStatus"/>
+    @play="updatePlayStatus" @pause="updatePlayStatus" @ended="updatePlayStatus"
+    @loadedmetadata="updateDuration" @durationchange="updateDuration" @timeupdate="updateProgress"/>
     <div class="audio-player-container">
         <div class="cover-image-container">
             
@@ -68,10 +130,22 @@ const currentTimePercent = computed(() => {
         <div class="metadata-container">
             <MarqueeText class="title" text="Very Longggggggggg Tittttttttttttle Longggggggggg Tittttttttttttle"/>
             <div class="artist-and-length">
-                <div class="artist">z {{ currentTime.toString() }}</div>
-                <div class="length">01:23 / 04:56</div>
+                <div class="artist">Artist</div>
+                <div class="length">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</div>
             </div>
-            <input class="progress-bar" v-model.number="currentTime" type="range" min="0" max="100" step="0.01"/>
+            <input
+                class="progress-bar"
+                type="range"
+                min="0"
+                :max="duration || 0"
+                step="0.01"
+                :value="currentTime"
+                :disabled="duration <= 0"
+                @pointerdown="startDragging"
+                @input="onSliderInput"
+                @change="commitProgress"
+                @pointercancel="cancelDragging"
+            />
         </div>
         <div class="pause-container">
             <div class="pause-btn" @click="togglePlayStatus">{{ pauseBtnText }}</div>
