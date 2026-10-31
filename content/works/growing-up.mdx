@@ -7,10 +7,12 @@ cover: "/growing-up-assets/video_bg.webp"
 ---
 
 import LinkButton from "../../src/components/ui/LinkButton.vue"
+import AudioPlayer from "../../src/components/AudioPlayer.vue"
 
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114255256881185&bvid=BV1VVZEYFESd&cid=29160375081&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<audio controls src="/growing-up-assets/song.mp3"></audio>
+{/* <audio controls src="/growing-up-assets/song.mp3"></audio> */}
+<AudioPlayer client:load src="/growing-up-assets/song.mp3" title="Growing Up" artist="kimsseTheWolf" cover="/growing-up-assets/album_cover_bg.webp"/>
 
 ## Growing Up
 
