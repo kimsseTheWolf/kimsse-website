@@ -128,9 +128,9 @@ const currentTimePercent = computed(() => {
             
         </div>
         <div class="metadata-container">
-            <MarqueeText class="title" text="Very Longggggggggg Tittttttttttttle Longggggggggg Tittttttttttttle"/>
+            <MarqueeText class="title" :text="props.title"/>
             <div class="artist-and-length">
-                <div class="artist">Artist</div>
+                <div class="artist">{{ props.artist }}</div>
                 <div class="length">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</div>
             </div>
             <input
