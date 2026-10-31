@@ -1,8 +1,6 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
-import ProjectGrid from "../components/ProjectGrid.vue";
-import ProjectCard from "../components/ProjectCard.vue";
-import ArticleNavigator from "../components/ArticleNavigator.vue"
+import AudioPlayer from "../components/AudioPlayer.vue";
 ---
 
 <GeneralLayout>
@@ -49,6 +47,7 @@ import ArticleNavigator from "../components/ArticleNavigator.vue"
             tags={["Music", "Song Production"]}
             />
         </ProjectGrid> -->
-        <ArticleNavigator/>
+        <AudioPlayer client:load
+        src="/growing-up-assets/song.mp3"/>
     </div>
 </GeneralLayout>
