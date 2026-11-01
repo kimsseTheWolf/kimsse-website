@@ -8,6 +8,7 @@ cover: "https://images.pexels.com/photos/30807710/pexels-photo-30807710.jpeg"
 
 import LinkButton from "../../src/components/ui/LinkButton.vue"
 import AudioPlayer from "../../src/components/AudioPlayer.vue"
+import Button from "../../src/components/ui/Button.vue"
 
 <AudioPlayer client:load src="/siren-assets/Siren.mp3" title="Siren" artist="Mixed by kimsseTheWolf"/>
 {/* <audio controls src="/siren-assets/Siren.mp3"></audio> */}
@@ -16,7 +17,8 @@ import AudioPlayer from "../../src/components/AudioPlayer.vue"
 
 Siren is an open-sourced disco track that was mixed and mastered in Pro Tools. The original stems provided a solid foundation, but many of the components lacked clarity because of frequency overlap and masking. The main purpose of this mixing process was to enhance the overall clarity and increase the impact of the arrangement so that every element could contribute to the groove and energy typical of disco music.
 
-<LinkButton client:load link="https://www.cambridge-mt.com/ms3/mtk/">Visit Cambridge Music Tehcnology website for more details</LinkButton>
+{/* <LinkButton client:load link="https://www.cambridge-mt.com/ms3/mtk/">Visit Cambridge Music Tehcnology website for more details</LinkButton> */}
+<Button client:load inline href="https://www.cambridge-mt.com/ms3/mtk/">Visit Cambridge Music Tehcnology website for more details</Button>
 
 ## Bass Bus
 In the original recording, the bass was too soft and did not provide the drive that disco music demands. Since bass is one of the most important components in this genre, I decided to divide the single bass bus into two. The first bus was processed with T-Racks 5 White 2A compressor to push the low-end presence forward, combined with EQ adjustments to remove unnecessary frequencies below 60Hz and emphasize the range around 100Hz. This gave the bass more weight and definition. The second bus focused on the higher-frequency components of the bass. By applying PSA-1 Amplifier and T-Racks 5 Comprexxor, I created a glitch-like energetic texture that layered on top of the low end, adding both power and excitement to the overall bass sound.
