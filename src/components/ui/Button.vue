@@ -5,8 +5,14 @@ const props = defineProps({
     inline: {
         type: Boolean,
         default: false
+    },
+    href: {
+        type: String,
+        default: ""
     }
 })
+
+const emit = defineEmits(["click"])
 
 const displayMode = computed(() => {
     if (props.inline) {
@@ -16,9 +22,27 @@ const displayMode = computed(() => {
         return "flex"
     }
 })
+
+const showLinkNotBtn = computed(() => {
+    if (props.href === undefined || props.href === "") {
+        return false
+    }
+    else {
+        return true
+    }
+})
+
+function handleClick() {
+    if (showLinkNotBtn.value) {
+        window.location.href = props.href
+    }
+    else {
+        emit("click")
+    }
+}
 </script>
 <template>
-    <div class="button-container">
+    <div class="button-container" @click="handleClick">
         <slot></slot>
     </div>
 </template>
